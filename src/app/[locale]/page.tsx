@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Heading, Flex, Text, Button,  Avatar, RevealFx, Arrow, Badge } from '@/once-ui/components';
+import { Heading, Flex, Text, Button,  Avatar, RevealFx, Arrow } from '@/once-ui/components';
 import { Projects } from '@/components/work/Projects';
 
 import { baseURL, routes, renderContent } from '@/app/resources'; 
@@ -135,7 +135,7 @@ export default function Home(
 					</Flex>
 				</Flex>
 
-				{/* Role Badge Section */}
+				{/* Role Section */}
 				<RevealFx translateY="16" delay={0.4}>
 					<Flex 
 						fillWidth 
@@ -144,13 +144,13 @@ export default function Home(
 						alignItems="flex-start"
 						gap="m"
 						borderBottom="neutral-medium">
-						<Badge
-							variant="strong"
-							size="l">
-							Software Developer
-						</Badge>
 						<Text
-							variant="body-strong-l"
+							variant="heading-strong-l"
+							wrap="balance">
+							Software Developer
+						</Text>
+						<Text
+							variant="body-default-m"
 							wrap="balance"
 							onBackground="neutral-weak">
 							Crafting digital experiences with clean code and thoughtful design
