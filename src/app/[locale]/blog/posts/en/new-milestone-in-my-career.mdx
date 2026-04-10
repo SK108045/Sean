@@ -1,0 +1,103 @@
+---
+title: "Mastering DevOps: A Year of Infrastructure as Code"
+publishedAt: "2025-04-08"
+image: "/images/projects/project-01/AWS.png"
+summary: "Deep dive into advanced DevOps practices and Infrastructure as Code implementations that transformed my development pipeline"
+tag: "DevOps"
+---
+
+The landscape of modern software development has evolved dramatically, and my journey into advanced DevOps practices has revealed fascinating patterns and methodologies that reshaped how I think about infrastructure. This past year, I've delved deep into Infrastructure as Code (IaC), discovering powerful approaches that go beyond basic automation.
+
+## The Evolution of GitOps and Policy as Code
+
+One of the most transformative discoveries in my DevOps journey was my implementation of GitOps with Flux and Argo CD, coupled with Policy as Code using Open Policy Agent (OPA). This combination created a robust governance framework where infrastructure changes automatically align with security policies I defined.
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: 'opa eval --data policy.rego --input deployment.yaml "data.kubernetes.admission.deny"',
+            label: 'OPA Validation',
+            language: 'bash'
+        },
+    ]}
+    copyButton
+/>
+
+## Advanced Infrastructure Patterns
+
+My implementation of multi-region deployment using Terraform has unlocked new possibilities in infrastructure management. By defining infrastructure as code and applying region-specific configurations, I achieved greater flexibility in environment management.
+
+### Implementing Multi-Region Resilience
+
+Designing a multi-region infrastructure that maintains consistency across geographical boundaries was a challenge. Using Terraform with variables for regions, I achieved a consistent deployment across multiple AWS regions:
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: 'terraform init\nterraform apply -var="region=us-east-1" -auto-approve',
+            label: 'Terraform Multi-region',
+            language: 'bash'
+        },
+    ]}
+    copyButton
+/>
+
+## Advanced Observability with AWS X-Ray
+
+As part of my journey to improve monitoring, I integrated distributed tracing using **AWS X-Ray**. This allowed me to track the flow of requests through my system, helping to identify bottlenecks and optimize performance.
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: 'aws xray daemon \\\n  --bind-address 0.0.0.0:2000 \\\n  --region us-east-1',
+            label: 'AWS X-Ray Setup',
+            language: 'bash'
+        },
+    ]}
+    copyButton
+/>
+
+## Event-Driven Infrastructure
+
+One of my most innovative implementations was developing an event-driven infrastructure pattern where infrastructure changes respond to application behavior. Using **AWS EventBridge** and custom Lambda functions, I created a responsive infrastructure that scales based on complex business logic.
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: '{\n  "source": ["my.application"],\n  "detail-type": ["Resource Scaling"],\n  "detail": {\n    "action": "scale-up",\n    "region": "us-east-1"\n  }}',
+            label: 'EventBridge Example',
+            language: 'json'
+        },
+    ]}
+    copyButton
+/>
+
+## Security as Code Integration
+
+My implementation of security as code using **HashiCorp Vault** for secrets management transformed my security approach. I automated secret storage and rotation patterns for more secure and efficient infrastructure management:
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: 'vault kv put secret/aws/access-key value=<ACCESS_KEY>\nvault kv put secret/aws/secret-key value=<SECRET_KEY>',
+            label: 'Vault Secrets Management',
+            language: 'bash'
+        },
+    ]}
+    copyButton
+/>
+
+## The Future of Infrastructure
+
+Looking ahead, I'm particularly excited about the emergence of platform engineering and the potential of WebAssembly in infrastructure management. The ability to run infrastructure tooling directly in the browser opens new possibilities for my future projects and development workflow.
+
+## Conclusion
+
+This year of deep diving into Infrastructure as Code has shown me that I'm just scratching the surface of what's possible. My exploration of machine learning for infrastructure optimization and the evolution of declarative infrastructure patterns has opened up exciting possibilities for my future DevOps practices.
+
+The journey continues, and I'm looking forward to exploring emerging patterns in infrastructure management and sharing more discoveries with the community.
