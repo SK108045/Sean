@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Heading, Flex, Text, Button,  Avatar, RevealFx, Arrow } from '@/once-ui/components';
+import { Heading, Flex, Text, Button,  Avatar, RevealFx, Arrow, Badge } from '@/once-ui/components';
 import { Projects } from '@/components/work/Projects';
 
 import { baseURL, routes, renderContent } from '@/app/resources'; 
@@ -74,15 +74,17 @@ export default function Home(
 					}),
 				}}
 			/>
+			{/* Enhanced Hero Section */}
 			<Flex
 				fillWidth
 				direction="column"
-				paddingY="l" gap="m">
+				paddingY="xl" gap="l">
 					<Flex
 						direction="column"
-						fillWidth maxWidth="s">
+						fillWidth maxWidth="s"
+						gap="l">
 						<RevealFx
-							translateY="4" fillWidth justifyContent="flex-start" paddingBottom="m">
+							translateY="4" fillWidth justifyContent="flex-start" paddingBottom="0">
 							<Heading
 								wrap="balance"
 								variant="display-strong-l">
@@ -90,7 +92,7 @@ export default function Home(
 							</Heading>
 						</RevealFx>
 						<RevealFx
-							translateY="8" delay={0.2} fillWidth justifyContent="flex-start" paddingBottom="m">
+							translateY="8" delay={0.2} fillWidth justifyContent="flex-start" paddingBottom="0">
 							<Text
 								wrap="balance"
 								onBackground="neutral-weak"
@@ -98,13 +100,13 @@ export default function Home(
 								{home.subline}
 							</Text>
 						</RevealFx>
-						<RevealFx translateY="12" delay={0.4}>
-							<Flex fillWidth>
+						<RevealFx translateY="12" delay={0.3}>
+							<Flex gap="m" alignItems="center">
 								<Button
 									id="about"
 									data-border="rounded"
 									href={`/${locale}/about`}
-									variant="tertiary"
+									variant="primary"
 									size="m">
 									<Flex
 										gap="8"
@@ -119,87 +121,127 @@ export default function Home(
 											<Arrow trigger="#about"/>
 									</Flex>
 								</Button>
+								<Button
+									href={`/${locale}/work`}
+									variant="secondary"
+									size="m">
+									<Flex gap="8" alignItems="center">
+										View Work
+										<Arrow trigger="#work"/>
+									</Flex>
+								</Button>
 							</Flex>
 						</RevealFx>
 					</Flex>
 				</Flex>
 
-				<RevealFx translateY="16" delay={0.5}>
-				<Flex 
-					fillWidth 
-					direction="column" 
-					paddingY="l" 
-					alignItems="center">
-					<Text
-						variant="heading-strong-l"
-						wrap="balance">
-						I am a Software Developer
-					</Text>
-
-				</Flex>
-			    </RevealFx>
-
-			
-			  	
-				<RevealFx translateY="16" delay={0.6}>
-                  <Projects range={[1,1]} locale={locale}/>
-                </RevealFx>
-
-				<RevealFx translateY="16" delay={0.7}>
-					<Flex fillWidth justifyContent="center">
-						<Heading
-							variant="display-strong-s"
-							wrap="balance">
-							Featured Projects
-						</Heading>
+				{/* Role Badge Section */}
+				<RevealFx translateY="16" delay={0.4}>
+					<Flex 
+						fillWidth 
+						direction="column" 
+						paddingY="xl" 
+						alignItems="flex-start"
+						gap="m"
+						borderBottom="neutral-medium">
+						<Badge
+							variant="strong"
+							size="l">
+							Software Developer
+						</Badge>
+						<Text
+							variant="body-strong-l"
+							wrap="balance"
+							onBackground="neutral-weak">
+							Crafting digital experiences with clean code and thoughtful design
+						</Text>
 					</Flex>
-			</RevealFx>
+				</RevealFx>
 
-
-			    <RevealFx translateY="16" delay={0.8}>
-				     <Projects range={[2,3]} locale={locale}/>
-			    </RevealFx>
-
-
-				<Flex fillWidth justifyContent="center" paddingY="l">
-					<Button
-						href="/work"
-						variant="tertiary"
-						size="l">
-						<Flex gap="8" alignItems="center">
-							<Text
-								variant="heading-strong-l"
+				{/* Featured Project */}
+				<RevealFx translateY="16" delay={0.5}>
+					<Flex
+						fillWidth
+						direction="column"
+						gap="m"
+						paddingY="l">
+						<Flex alignItems="baseline" gap="m">
+							<Heading
+								as="h2"
+								variant="display-strong-s"
 								wrap="balance">
-								Additional Projects
-							</Text>
-							<Arrow trigger="#more-projects"/>
+								Featured Project
+							</Heading>
 						</Flex>
-					</Button>
-                </Flex>
+						<Projects range={[1,1]} locale={locale}/>
+					</Flex>
+				</RevealFx>
 
-
-			{routes['/blog'] && (
-				<Flex
-					fillWidth gap="24"
-					mobileDirection="column">
-					<Flex flex={1} paddingLeft="l">
+				{/* Featured Projects Grid */}
+				<RevealFx translateY="16" delay={0.6}>
+					<Flex
+						fillWidth
+						direction="column"
+						gap="m"
+						paddingY="l">
 						<Heading
 							as="h2"
-							variant="display-strong-xs"
+							variant="display-strong-s"
 							wrap="balance">
-							Latest from my blogs
+							More Projects
 						</Heading>
+						<Projects range={[2,4]} locale={locale}/>
 					</Flex>
-					<Flex
-						flex={3} paddingX="20">
-						<Posts range={[1,2]} columns="2" locale={locale}/>
+				</RevealFx>
+
+				{/* View All Projects CTA */}
+				<RevealFx translateY="16" delay={0.7}>
+					<Flex fillWidth justifyContent="flex-start" paddingY="l">
+						<Button
+							href={`/${locale}/work`}
+							variant="tertiary"
+							size="l">
+							<Flex gap="8" alignItems="center">
+								<Text
+									variant="heading-strong-l"
+									wrap="balance">
+									View All Projects
+								</Text>
+								<Arrow trigger="#all-projects"/>
+							</Flex>
+						</Button>
 					</Flex>
-				</Flex>
-			)}
-			
-			{ newsletter.display &&
-				<Mailchimp newsletter={newsletter} />
-			}
+				</RevealFx>
+
+				{/* Blog Section */}
+				{routes['/blog'] && (
+					<RevealFx translateY="16" delay={0.8}>
+						<Flex
+							fillWidth gap="l"
+							mobileDirection="column"
+							paddingY="l"
+							borderTop="neutral-medium">
+							<Flex flex={1}>
+								<Heading
+									as="h2"
+									variant="display-strong-s"
+									wrap="balance">
+									Latest Insights
+								</Heading>
+							</Flex>
+							<Flex
+								flex={1.5} paddingX="0">
+								<Posts range={[1,2]} columns="1" locale={locale}/>
+							</Flex>
+						</Flex>
+					</RevealFx>
+				)}
+				
+				{newsletter.display && (
+					<RevealFx translateY="16" delay={0.9}>
+						<Mailchimp newsletter={newsletter} />
+					</RevealFx>
+				)}
 		</Flex>
 	);
 }
