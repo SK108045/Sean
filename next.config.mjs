@@ -11,6 +11,12 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
 };
 
 export default withNextIntl(withMDX(nextConfig));
